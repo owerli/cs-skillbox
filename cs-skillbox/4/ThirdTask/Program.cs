@@ -44,6 +44,7 @@ namespace GameOfLife
 
             if (cells[i, j])
             {
+
                 if (numOfAliveNeighbors < 1)
                 {
                     cells[i, j] = false;
@@ -53,13 +54,16 @@ namespace GameOfLife
                 {
                     cells[i, j] = false;
                 }
+
             }
             else
             {
+
                 if (numOfAliveNeighbors < 2)
                 {
                     cells[i, j] = true;
                 }
+
             }
 
         }
@@ -78,25 +82,30 @@ namespace GameOfLife
 
                 for (int i = 0; i < _heigth; i++)
                 {
+
                     for (int j = 0; j < _width; j++)
                     {
 
                         SetLifeOrDie(i, j);
 
                     }
+
                 }
 
             }
-            else {
+            else 
+            {
 
                 for (int i = _heigth - 1; i >= 0; i--)
                 {
+
                     for (int j = _width - 1; j >= 0 ; j--)
                     {
 
                         SetLifeOrDie(i, j);
 
                     }
+
                 }
 
             }
@@ -115,15 +124,23 @@ namespace GameOfLife
 
             for (int i = x - 1; i < x + 2; i++)
             {
+
                 for (int j = y - 1; j < y + 2; j++)
                 {
+
                     if (!((i < 0 || j < 0) || (i >= _heigth || j >= _width)))
                     {
+
                         if (cells[i, j] == true) NumOfAliveNeighbors++;
+                    
                     }
+
                 }
+
             }
+
             return NumOfAliveNeighbors;
+
         }
 
         /// <summary>
@@ -131,15 +148,22 @@ namespace GameOfLife
         /// </summary>
         private void DrawGame()
         {
+
             for (int i = 0; i < _heigth; i++)
             {
+
                 for (int j = 0; j < _width; j++)
                 {
+
                     Console.Write(cells[i, j] ? "x" : " ");
                     if (j == _width - 1) Console.WriteLine("\r");
+
                 }
+
             }
+
             Console.SetCursorPosition(0, Console.WindowTop);
+
         }
 
         /// <summary>
@@ -147,17 +171,25 @@ namespace GameOfLife
         /// </summary>
         private void GenerateField()
         {
+
             Random generator = new Random();
             int number;
+
             for (int i = 0; i < _heigth; i++)
             {
+
                 for (int j = 0; j < _width; j++)
                 {
+
                     number = generator.Next(2);
                     cells[i, j] = ((number == 0) ? false : true);
+
                 }
+
             }
+
         }
+
     }
 
     internal class Program
@@ -170,16 +202,22 @@ namespace GameOfLife
 
         private static void Main(string[] args)
         {
+
             int runs = 0;
             LifeSimulation sim = new LifeSimulation(Heigth, Width);
 
             while (runs++ < MaxRuns)
             {
+
                 sim.DrawAndGrow();
 
                 // Дадим пользователю шанс увидеть, что происходит, немного ждем
                 System.Threading.Thread.Sleep(250);
+
             }
+
         }
+
     }
+
 }

@@ -21,9 +21,11 @@ namespace FirstTask
             int[,] matrix = new int[rows, columns];
             int matrixValue = 0;
 
-            for (int row = 0; row < matrix.GetLength(0); row++) {
+            for (int row = 0; row < matrix.GetLength(0); row++) 
+            {
 
-                for (int column = 0; column < matrix.GetLength(1); column++) {
+                for (int column = 0; column < matrix.GetLength(1); column++) 
+                {
 
                     matrix[row, column] = rand.Next(101);
                     matrixValue += matrix[row, column];
